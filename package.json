@@ -4,7 +4,7 @@
   "description": "The repository for the code of the series of blog posts about Frontend testing",
   "main": "index.js",
   "scripts": {
-    "test": "mocha && eslint ."
+    "test": "mocha 'test/**/test-*.js' && eslint ."
   },
   "repository": {
     "type": "git",
