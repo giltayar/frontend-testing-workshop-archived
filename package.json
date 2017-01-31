@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/giltayar/frontend-testing.git"
+    "url": "git+https://github.com/create-oss/frontend-testing.git"
   },
   "keywords": [
     "testing",
@@ -18,9 +18,9 @@
   "license": "UNLICENSE",
   "private": true,
   "bugs": {
-    "url": "https://github.com/giltayar/frontend-testing/issues"
+    "url": "https://github.com/create-oss/frontend-testing/issues"
   },
-  "homepage": "https://github.com/giltayar/frontend-testing#readme",
+  "homepage": "https://github.com/create-oss/frontend-testing#readme",
   "devDependencies": {
     "chai": "^3.5.0",
     "eslint": "^3.14.1",
