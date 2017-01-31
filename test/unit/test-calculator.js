@@ -32,6 +32,22 @@ describe('calculator', function () {
     expect(stream('37+42=').display).to.equal('79')
   })
 
+  it('should compute another expression after "="', () => {
+    expect(stream('1+2=4*5=').display).to.equal('20')
+  })
+
+  it('should enabling using computation result in next computation', () => {
+    expect(stream('1+2=*5=').display).to.equal('15')
+  })
+
+  it('second operator is also an equal', () => {
+    expect(stream('1+2*').display).to.equal('3')
+  })
+
+  it('second operator is also an equal but it can continue after that', () => {
+    expect(stream('1+2*11=').display).to.equal('33')
+  })
+
   it('+42= should compute to 42', () => {
     expect(stream('+42=').display).to.equal('42')
   })
