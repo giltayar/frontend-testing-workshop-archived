@@ -63,4 +63,8 @@ describe('calculator', function () {
   it('8/2= should compute to 4', () => {
     expect(stream('8/2=').display).to.equal('4')
   })
+
+  it('4+3=5*2= should compute to 10', () => {
+    expect(stream('4+3=5*2=').display).to.equal('10')
+  })
 })
