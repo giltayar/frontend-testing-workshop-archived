@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack && cp public/* dist",
     "test": "mocha 'test/**/test-*.js' && eslint .",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server --hot"
   },
   "repository": {
     "type": "git",
