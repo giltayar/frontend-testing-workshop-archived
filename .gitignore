@@ -40,3 +40,6 @@ jspm_packages
 .vscode/*
 .idea/*
 !.vscode/launch.json
+
+# Dist
+dist/
