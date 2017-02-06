@@ -1,9 +1,5 @@
 {
   "extends": "standard",
-  "plugins": [
-    "react",
-    "jsx"
-  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
