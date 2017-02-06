@@ -4,7 +4,9 @@
   "description": "The repository for the code of the series of blog posts about Frontend testing",
   "main": "index.js",
   "scripts": {
-    "test": "mocha 'test/**/test-*.js' && eslint ."
+    "build": "webpack && cp public/* dist",
+    "test": "mocha 'test/**/test-*.js' && eslint .",
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -25,8 +27,18 @@
     "chai": "^3.5.0",
     "eslint": "^3.14.1",
     "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-jsx": "0.0.2",
     "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-react": "^6.9.0",
     "eslint-plugin-standard": "^2.0.1",
-    "mocha": "^3.2.0"
+    "install": "^0.8.6",
+    "mocha": "^3.2.0",
+    "npm": "^4.1.2",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
+  },
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   }
 }
