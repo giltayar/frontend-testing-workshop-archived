@@ -65,6 +65,6 @@ describe('calculator', function () {
   })
 
   it('4+3=5*2= should compute to 10', () => {
-    expect(stream('4+3=5*2=').display).to.equal('10')
+    expect(stream('4+3=')).to.equal('10')
   })
 })
