@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack && cp public/* dist",
     "test": "mocha 'test/**/test-*.js' && eslint test lib",
-    "start": "webpack-dev-server --hot"
+    "start": "webpack-dev-server --hot",
+    "deploy": "surge --project dist --domain frontend-testing.surge.sh"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
     "install": "^0.8.6",
     "mocha": "^3.2.0",
     "npm": "^4.1.2",
+    "surge": "^0.18.0",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0"
   },
