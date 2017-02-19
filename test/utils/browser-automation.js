@@ -5,6 +5,7 @@ const chromeDriverPathAddition = `:${path.dirname(require('chromedriver').path)}
 
 exports.prepareBrowser = async (context) => {
   process.on('beforeExit', () => this.browser && this.browser.quit())
+  console.log(chromeDriverPathAddition)
   process.env.PATH += chromeDriverPathAddition
 
   return await new webdriver.Builder()
