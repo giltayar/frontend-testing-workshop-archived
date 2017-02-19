@@ -15,8 +15,8 @@ exports.prepareBrowser = async (context) => {
 }
 
 exports.cleanupBrowser = async (browser) => {
-  (await this.browser.manage().logs().get('driver')).forEach(l => process.stdout.write(`${l.message}\n`));
-  (await this.browser.manage().logs().get('browser')).forEach(l => process.stdout.write(`${l.message}\n`))
+  (await browser.manage().logs().get('driver')).forEach(l => process.stdout.write(`${l.message}\n`));
+  (await browser.manage().logs().get('browser')).forEach(l => process.stdout.write(`${l.message}\n`))
 
   if (browser) {
     browser.quit()
