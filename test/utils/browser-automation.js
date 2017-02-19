@@ -11,7 +11,7 @@ exports.prepareBrowser = async (context) => {
     .disableEnvironmentOverrides()
     .forBrowser('chrome')
     .setLoggingPrefs({ browser: 'ALL' })
-    .build()
+    .build().then(console.log).catch(console.error)
 }
 
 exports.cleanupBrowser = (browser) => {
