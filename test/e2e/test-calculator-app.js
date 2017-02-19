@@ -8,7 +8,7 @@ describe('calculator app', function () {
   let browser
   let server
 
-  this.timeout(30000)
+  this.timeout(60000)
 
   before((done) => {
     const app = express()
@@ -29,7 +29,7 @@ describe('calculator app', function () {
   it('should work', async function () {
     await browser.get('http://localhost:8080')
 
-    await new Promise(resolve => setTimeout(resolve, 3000))
+    await new Promise(resolve => setTimeout(resolve, 30000))
 
     expect(await browser.getTitle()).to.equal('Calculator')
   })
