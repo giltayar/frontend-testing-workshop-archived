@@ -29,6 +29,8 @@ describe('calculator app', function () {
   it('should work', async function () {
     await browser.get('http://localhost:8080')
 
+    await new Promise(resolve => setTimeout(resolve, 3000))
+
     expect(await browser.getTitle()).to.equal('Calculator')
   })
 })
