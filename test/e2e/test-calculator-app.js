@@ -20,7 +20,9 @@ describe('calculator app', function () {
   })
 
   before(async () => {
+    console.log('before')
     browser = await prepareBrowser(this)
+    console.log('after')
   })
   after(() => cleanupBrowser(browser))
 
