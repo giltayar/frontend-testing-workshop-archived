@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack && cp public/* dist",
-    "test": "mocha 'test/**/test-*.js' && eslint test lib",
+    "test": "mocha --harmony 'test/**/test-*.js' && eslint test lib",
     "start": "webpack-dev-server --hot",
     "deploy": "surge --project dist --domain frontend-testing.surge.sh"
   },
@@ -26,6 +26,7 @@
   "homepage": "https://github.com/create-oss/frontend-testing#readme",
   "devDependencies": {
     "chai": "^3.5.0",
+    "chromedriver": "^2.27.3",
     "eslint": "^3.14.1",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-jsx": "0.0.2",
@@ -35,6 +36,7 @@
     "install": "^0.8.6",
     "mocha": "^3.2.0",
     "npm": "^4.1.2",
+    "selenium-webdriver": "^3.1.0",
     "surge": "^0.18.0",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0"
