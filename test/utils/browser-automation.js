@@ -10,11 +10,14 @@ exports.prepareBrowser = async (context) => {
   return await new webdriver.Builder()
     .disableEnvironmentOverrides()
     .forBrowser('chrome')
-    .setLoggingPrefs({ browser: 'ALL' })
+    .setLoggingPrefs({browser: 'ALL', driver: 'ALL'})
     .build()
 }
 
-exports.cleanupBrowser = (browser) => {
+exports.cleanupBrowser = async (browser) => {
+  (await this.browser.manage().logs().get('driver')).forEach(l => process.stdout.write(`${l.message}\n`));
+  (await this.browser.manage().logs().get('browser')).forEach(l => process.stdout.write(`${l.message}\n`))
+
   if (browser) {
     browser.quit()
   }
