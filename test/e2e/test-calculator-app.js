@@ -2,10 +2,12 @@ const {describe, it, before, after} = require('mocha')
 const {expect} = require('chai')
 const path = require('path')
 const express = require('express')
-const {prepareBrowser, cleanupBrowser} = require('../utils/browser-automation')
+const retry = require('promise-retry')
+const {prepareDriver, cleanupDriver} = require('../utils/browser-automation')
+const {By} = require('selenium-webdriver')
 
 describe('calculator app', function () {
-  let browser
+  let driver
   let server
 
   this.timeout(60000)
@@ -20,17 +22,42 @@ describe('calculator app', function () {
   })
 
   before(async () => {
-    console.log('before')
-    browser = await prepareBrowser(this)
-    console.log('after')
+    driver = await prepareDriver(this)
   })
-  after(() => cleanupBrowser(browser))
+  after(() => cleanupDriver(driver))
 
   it('should work', async function () {
-    await browser.get('http://localhost:8080')
+    await driver.get('http://localhost:8080')
 
-    await new Promise(resolve => setTimeout(resolve, 30000))
+    await retry(async () => {
+      const title = await driver.getTitle()
 
-    expect(await browser.getTitle()).to.equal('Calculator')
+      expect(title).to.equal('Calculator')
+    })
+
+    await retry(async () => {
+      const displayElement = await driver.findElement(By.css('.display'))
+      const displayText = await displayElement.getText()
+
+      expect(displayText).to.equal('0')
+    })
+
+    const digit4Element = await driver.findElement(By.css('.digit-4'))
+    const digit2Element = await driver.findElement(By.css('.digit-2'))
+    const operatorMultiply = await driver.findElement(By.css('.operator-multiply'))
+    const operatorEquals = await driver.findElement(By.css('.operator-equals'))
+
+    await digit4Element.click()
+    await digit2Element.click()
+    await operatorMultiply.click()
+    await digit2Element.click()
+    await operatorEquals.click()
+
+    await retry(async () => {
+      const displayElement = await driver.findElement(By.css('.display'))
+      const displayText = await displayElement.getText()
+
+      expect(displayText).to.equal('84')
+    })
   })
 })
