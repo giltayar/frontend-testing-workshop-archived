@@ -22,7 +22,7 @@ describe('calculator app', function () {
   })
 
   before(async () => {
-    driver = await prepareDriver(this)
+    driver = await prepareDriver()
   })
   after(() => cleanupDriver(driver))
 

@@ -3,7 +3,7 @@ const path = require('path')
 
 const chromeDriverPathAddition = `:${path.dirname(require('chromedriver').path)}`
 
-exports.prepareDriver = async (context) => {
+exports.prepareDriver = async () => {
   process.on('beforeExit', () => this.browser && this.browser.quit())
   process.env.PATH += chromeDriverPathAddition
 
@@ -14,9 +14,9 @@ exports.prepareDriver = async (context) => {
     .build()
 }
 
-exports.cleanupDriver = async (browser) => {
-  if (browser) {
-    browser.quit()
+exports.cleanupDriver = async (driver) => {
+  if (driver) {
+    driver.quit()
   }
   process.env.PATH = process.env.PATH.replace(chromeDriverPathAddition, '')
 }
