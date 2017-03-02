@@ -1,7 +1,8 @@
 const webdriver = require('selenium-webdriver')
+const chromeDriver = require('chromedriver')
 const path = require('path')
 
-const chromeDriverPathAddition = `:${path.dirname(require('chromedriver').path)}`
+const chromeDriverPathAddition = `:${path.dirname(chromeDriver.path)}`
 
 exports.prepareDriver = async () => {
   process.on('beforeExit', () => this.browser && this.browser.quit())
