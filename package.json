@@ -36,6 +36,7 @@
     "eslint-plugin-standard": "^2.0.1",
     "express": "^4.14.1",
     "install": "^0.8.6",
+    "jsdom": "^9.11.0",
     "mocha": "^3.2.0",
     "npm": "^4.1.2",
     "promise-retry": "^1.1.1",
