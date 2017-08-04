@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack && cp public/* dist",
     "test": "mocha 'test/**/test-*.js' && eslint test lib",
+    "eslint": "eslint test lib",
     "test:debug": "mocha --debug-brk 'test/**/test-*.js'",
     "start": "webpack-dev-server --hot",
     "deploy": "surge --project dist --domain frontend-testing.surge.sh"
@@ -26,26 +27,27 @@
   },
   "homepage": "https://github.com/create-oss/frontend-testing#readme",
   "devDependencies": {
-    "chai": "^3.5.0",
+    "chai": "^4.1.0",
     "chromedriver": "^2.27.3",
-    "eslint": "^3.14.1",
-    "eslint-config-standard": "^6.2.1",
+    "eslint": "^4.3.0",
+    "eslint-config-standard": "^10.2.1",
     "eslint-plugin-jsx": "0.0.2",
     "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-react": "^6.9.0",
-    "eslint-plugin-standard": "^2.0.1",
+    "eslint-plugin-react": "^7.1.0",
+    "eslint-plugin-standard": "^3.0.1",
     "express": "^4.14.1",
-    "install": "^0.8.6",
-    "jsdom": "^9.11.0",
+    "install": "^0.10.1",
+    "jsdom": "^11.1.0",
     "mocha": "^3.2.0",
-    "npm": "^4.1.2",
     "promise-retry": "^1.1.1",
     "selenium-webdriver": "^3.1.0",
-    "surge": "^0.18.0",
-    "webpack": "^2.2.1",
+    "surge": "^0.19.0",
+    "webpack": "^3.4.1",
     "webpack-dev-server": "^2.3.0"
   },
   "dependencies": {
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   }

@@ -7,7 +7,7 @@ describe('calculator', function () {
     !characters
       ? calculatorState
       : stream(characters.slice(1),
-               calculator.nextState(calculatorState, characters[0]))
+        calculator.nextState(calculatorState, characters[0]))
 
   it('should show initial display correctly', () => {
     expect(calculator.initialState.display).to.equal('0')

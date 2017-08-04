@@ -1,6 +1,6 @@
 const {describe, it, before, after} = require('mocha')
 const {expect} = require('chai')
-const {jsdom} = require('jsdom')
+const {JSDOM} = require('jsdom')
 const React = require('react')
 const e = React.createElement
 const ReactDom = require('react-dom')
@@ -8,8 +8,8 @@ const CalculatorApp = require('../../lib/calculator-app')
 
 describe('calculator app component', function () {
   before(function () {
-    global.document = jsdom(`<!doctype html><html><body><div id="container"/></div></body></html>`)
-    global.window = document.defaultView
+    global.window = new JSDOM(`<!doctype html><html><body><div id="container"/></div></body></html>`).window
+    global.document = window.document
   })
 
   after(function () {
