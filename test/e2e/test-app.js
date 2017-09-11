@@ -4,8 +4,10 @@ const {Eyes} = require('eyes.selenium')
 const path = require('path')
 const express = require('express')
 const retry = require('promise-retry')
-const {prepareDriver, cleanupDriver} = require('../utils/browser-automation')
-const {By} = require('selenium-webdriver')
+const webdriver = require('selenium-webdriver')
+require('chromedriver')
+
+const {By} = webdriver
 
 describe('calculator app', function () {
   let driver
@@ -23,9 +25,11 @@ describe('calculator app', function () {
   })
 
   before(async () => {
-    driver = await prepareDriver()
+    driver = new webdriver.Builder()
+      .forBrowser('chrome')
+      .build()
   })
-  after(() => cleanupDriver(driver))
+  after(async () => await driver.quit())
 
   it('should work', async function () {
     await driver.get('http://localhost:8080')
@@ -61,6 +65,12 @@ describe('calculator app', function () {
       expect(displayText).to.equal('84')
     })
   })
+
+  if (!process.env.APPLITOOLS_APIKEY) {
+    console.warn('******** Skipping visual tests ************\n' +
+      'To run them, set the APPLITOOLS_APIKEY environment variable with your Applitools API Key.')
+    return
+  }
 
   describe('visual testing', () => {
     let eyes
