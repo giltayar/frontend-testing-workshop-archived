@@ -49,7 +49,6 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
     "eyes.selenium": "0.0.78",
-    "p-retry": "^1.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   }
