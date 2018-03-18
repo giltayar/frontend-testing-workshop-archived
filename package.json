@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack && cp public/* dist",
-    "test": "mocha 'test/**/test-*.js' && eslint test lib",
+    "test": "mocha --no-timeouts 'test/**/test-*.js' && eslint test lib",
     "eslint": "eslint test lib",
     "test:debug": "mocha --debug-brk 'test/**/test-*.js'",
     "start": "webpack-dev-server --hot",
@@ -43,6 +43,7 @@
     "selenium-webdriver": "^3.6.0",
     "surge": "^0.20.1",
     "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12",
     "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
