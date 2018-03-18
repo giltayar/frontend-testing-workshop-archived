@@ -3,7 +3,7 @@ const {expect} = require('chai')
 const {Eyes} = require('eyes.selenium')
 const path = require('path')
 const express = require('express')
-const retry = require('promise-retry')
+const retry = require('p-retry')
 const webdriver = require('selenium-webdriver')
 require('chromedriver')
 
