@@ -26,28 +26,32 @@ const addDigit = (calculatorState, character) => {
     return Object.assign(
       {},
       calculatorState,
-      {display: character, initial: false, previousOperand: parseInt(calculatorState.display)})
+      {display: character, initial: false, previousOperand: parseInt(calculatorState.display), tape: undefined})
   } else {
-    return Object.assign({}, calculatorState, {display: calculatorState.display + character})
+    return Object.assign({}, calculatorState, {display: calculatorState.display + character, tape: undefined})
   }
 }
 
 const addOperator = (calculatorState, character) => {
   if (!calculatorState.operator || calculatorState.initial) {
-    return Object.assign({}, calculatorState, {operator: character, initial: true})
+    return Object.assign({}, calculatorState, {operator: character, initial: true, tape: [calculatorState.display, character]})
   } else {
-    return Object.assign({}, compute(calculatorState), {operator: character})
+    const nextState = compute(calculatorState)
+
+    return Object.assign({}, nextState, {operator: character, tape: [calculatorState.display, character]})
   }
 }
 
 const compute = calculatorState =>
   !calculatorState.operator
-    ? Object.assign({}, calculatorState, {initial: true})
+    ? Object.assign({}, calculatorState, {initial: true, tape: calculatorState.display})
     : {
       display:
           String(
             OPERATORS[calculatorState.operator](calculatorState.previousOperand, parseInt(calculatorState.display))),
-      initial: true
+      initial: true,
+      tape: [calculatorState.display, '=', String(
+        OPERATORS[calculatorState.operator](calculatorState.previousOperand, parseInt(calculatorState.display)))]
     }
 
 const OPERATORS = {
