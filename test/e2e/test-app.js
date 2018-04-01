@@ -1,13 +1,11 @@
 const {describe, it, before, after} = require('mocha')
-const {expect} = require('chai')
 const {Eyes} = require('eyes.selenium')
 const path = require('path')
 const express = require('express')
-const retry = require('promise-retry')
 const webdriver = require('selenium-webdriver')
 require('chromedriver')
 
-const {By} = webdriver
+const {By, until} = webdriver
 
 describe('calculator app', function () {
   let driver
@@ -34,18 +32,9 @@ describe('calculator app', function () {
   it('should work', async function () {
     await driver.get('http://localhost:8080')
 
-    await retry(async () => {
-      const title = await driver.getTitle()
+    await driver.wait(until.titleIs('Calculator'))
 
-      expect(title).to.equal('Calculator')
-    })
-
-    await retry(async () => {
-      const displayElement = await driver.findElement(By.css('.display'))
-      const displayText = await displayElement.getText()
-
-      expect(displayText).to.equal('0')
-    })
+    await driver.wait(until.elementTextIs(await driver.findElement(By.css('.display')), '0'))
 
     const digit4Element = await driver.findElement(By.css('.digit-4'))
     const digit2Element = await driver.findElement(By.css('.digit-2'))
@@ -58,12 +47,7 @@ describe('calculator app', function () {
     await digit2Element.click()
     await operatorEquals.click()
 
-    await retry(async () => {
-      const displayElement = await driver.findElement(By.css('.display'))
-      const displayText = await displayElement.getText()
-
-      expect(displayText).to.equal('84')
-    })
+    await driver.wait(until.elementTextIs(await driver.findElement(By.css('.display')), '84'))
   })
 
   if (!process.env.APPLITOOLS_API_KEY) {
