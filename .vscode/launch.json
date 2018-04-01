@@ -7,24 +7,15 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Run this test",
-      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
-      "args": [
-        "${file}",
-        "--no-timeouts"
-      ],
-      "stopOnEntry": false,
-      "cwd": "${workspaceRoot}",
-      "internalConsoleOptions": "openOnFirstSessionStart"
-    },
-    {
-      "type": "node",
-      "request": "launch",
       "name": "Run all tests",
       "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
       "args": [
         "test/**/test-*.js",
-        "--no-timeouts"
+        "--no-timeouts",
+        "-r",
+        "babel-register",
+        "-r",
+        "babel-polyfill"
       ],
       "stopOnEntry": false,
       "cwd": "${workspaceRoot}",

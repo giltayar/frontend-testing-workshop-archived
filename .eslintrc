@@ -1,5 +1,5 @@
 {
-  "extends": "standard",
+  "extends": ["standard", "standard-jsx"],
   "rules": {
     "no-return-await": 0
   }

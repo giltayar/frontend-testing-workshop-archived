@@ -12,5 +12,10 @@ module.exports = {
     port: 3000,
     watchContentBase: true
   },
+  module: {
+    rules: [
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }
+    ]
+  },
   devtool: 'sourcemap'
 }
