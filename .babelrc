@@ -1,4 +1,11 @@
 {
-  "presets": ["env"],
-  "plugins": ["transform-react-jsx"]
+  "env": {
+    "development": {
+      "plugins": ["transform-react-jsx"]
+    },
+    "production": {
+      "presets": ["env"],
+      "plugins": ["transform-react-jsx"]
+    }
+}
 }
