@@ -16,27 +16,23 @@ describe('calculator app (e2e)', function () {
 
     let tape = []
 
-    app.use('/', (req, res, next) => console.log('static', req.url) || next(), express.static(path.join(__dirname, '/../../dist')))
-    app.get('/tape', (req, res) => { res.json(tape); console.log('done get tape') })
+    app.use('/', express.static(path.join(__dirname, '/../../dist')))
+    app.get('/tape', (req, res) => res.json(tape))
     app.put('/tape', express.json(), (req, res) => {
       tape = req.body
 
       res.send('')
-      console.log('done set tape')
     })
 
     server = stoppable(app.listen(3000, done), 0)
   })
-  after((done) => console.log('closing...') || server.stop(() => console.log('closed server') || done()))
+  after((done) => server.stop(done))
 
   let driver
   before(async () => {
     driver = await new webdriver.Builder().forBrowser('chrome').build()
   })
-  after(async () => {
-    await driver.quit()
-    console.log('quit driver')
-  })
+  after(async () => await driver.quit())
 
   const $ = selector => driver.findElement(By.css(selector))
 
