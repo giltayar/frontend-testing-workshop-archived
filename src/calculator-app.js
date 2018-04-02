@@ -1,15 +1,13 @@
 const React = require('react')
-const Display = require('./display')
-const Keypad = require('./keypad')
+const CalculatorComponent = require('./calculator-component')
 const Tape = require('./tape')
-const calculator = require('./calculator')
 
 const tapeApiUrl = process.env.NODE_ENV === 'production' ? '/tape' : 'http://localhost:3001/tape'
 
 module.exports = class extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {calculator: calculator.initialState, tape: []}
+    this.state = {tape: []}
   }
 
   async componentDidMount () {
@@ -23,7 +21,8 @@ module.exports = class extends React.Component {
     }
   }
 
-  async saveTape (tape) {
+  async changeTape (tape) {
+    this.setState({tape})
     await fetch(tapeApiUrl, {method: 'PUT',
       headers: {
         'content-type': 'application/json'
@@ -35,16 +34,7 @@ module.exports = class extends React.Component {
   render () {
     return (
       <div>
-        <Display display={this.state.calculator.display} />
-        <Keypad onKeypad={(key) => {
-          const nextState = calculator.nextState(this.state.calculator, key)
-          if (nextState.tape) {
-            const newTape = this.state.tape.concat(nextState.tape)
-            this.setState({tape: this.state.tape.concat(nextState.tape)})
-            this.saveTape(newTape)
-          }
-          this.setState({calculator: nextState})
-        }} />
+        <CalculatorComponent onTape={tape => this.changeTape(this.state.tape.concat(tape))} />
         <hr />
         <Tape tape={this.state.tape} />
       </div>
