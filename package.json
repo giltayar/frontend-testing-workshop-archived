@@ -4,9 +4,10 @@
   "description": "The repository for the code of the series of blog posts about Frontend testing",
   "main": "index.js",
   "scripts": {
-    "build": "webpack && cp public/* dist",
+    "build": "NODE_ENV=production webpack && cp public/* dist",
     "test": "npm run eslint",
     "eslint": "eslint src test",
+    "fake-tape": "node fake-tape",
     "start": "webpack-dev-server --hot"
   },
   "repository": {
@@ -32,6 +33,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
+    "cors": "^2.8.4",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-config-standard-jsx": "^5.0.0",

@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  entry: './src/app.js',
+  entry: ['babel-polyfill', './src/app.js'],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
@@ -17,5 +17,6 @@ module.exports = {
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }
     ]
   },
+  mode: process.env.NODE_ENV || 'development',
   devtool: 'sourcemap'
 }

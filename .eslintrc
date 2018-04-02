@@ -1,5 +1,8 @@
 {
   "extends": ["standard", "standard-jsx"],
+  "env": {
+    "browser": true
+  },
   "rules": {
     "no-return-await": 0
   }
