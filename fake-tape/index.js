@@ -12,5 +12,3 @@ app.put('/tape', express.json(), (req, res) => {
 
   res.send('')
 })
-
-app.listen(3001, () => console.log('fake tape running...'))

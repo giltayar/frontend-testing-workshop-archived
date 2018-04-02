@@ -11,7 +11,6 @@ module.exports = class extends React.Component {
   }
 
   async componentDidMount () {
-    console.log(process.env.NODE_ENV)
     const response = await fetch(tapeApiUrl)
     if (response.ok) {
       const tape = await response.json()
