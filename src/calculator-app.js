@@ -20,20 +20,14 @@ module.exports = class extends React.Component {
     }
   }
 
-<<<<<<< HEAD
   async changeTape (tape) {
     this.setState({tape})
     await fetch(tapeApiUrl, {method: 'PUT',
-=======
-  async saveTape (tape) {
-    const response = await fetch(tapeApiUrl, {method: 'PUT',
->>>>>>> e2e: moved to selenium, added tape, and close the server quickly
       headers: {
         'content-type': 'application/json'
       },
       body: JSON.stringify(tape)}
     )
-    await response.text()
   }
 
   render () {
