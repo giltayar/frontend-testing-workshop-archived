@@ -5,11 +5,12 @@ const {describe, it, before, after} = require('mocha')
 const {expect} = require('chai')
 const express = require('express')
 const webdriver = require('selenium-webdriver')
+const {Eyes} = require('eyes.selenium')
 require('chromedriver')
 
 const {By} = webdriver
 
-describe('calculator app (e2e)', function () {
+describe.only('calculator app (e2e)', function () {
   let server
   before((done) => {
     const app = express()
@@ -34,6 +35,18 @@ describe('calculator app (e2e)', function () {
   })
   after(async () => await driver.quit())
 
+  let eyes
+  before(async () => {
+    eyes = new Eyes()
+
+    eyes.setApiKey(process.env.APPLITOOLS_API_KEY)
+
+    await eyes.open(driver, 'calculator app', 'calculator e2e (apr 2018)', {width: 800, height: 600})
+  })
+  after(async () => {
+    await eyes.close()
+  })
+
   const $ = selector => driver.findElement(By.css(selector))
 
   it('should do calculations as expected', async () => {
@@ -42,6 +55,7 @@ describe('calculator app (e2e)', function () {
     expect(await driver.getTitle()).to.equal('Calculator')
 
     expect(await (await $('.display')).getText()).to.equal('0')
+    await eyes.checkWindow('initial display')
 
     await (await $('.digit-8')).click()
     await (await $('.digit-4')).click()
@@ -57,9 +71,13 @@ describe('calculator app (e2e)', function () {
 
     expect(tapeLines).to.deep.equal(['84', '/', '2', '=', '42'])
 
+    await eyes.checkWindow('after calculation')
+
     await driver.navigate().refresh()
 
     expect(await (await $('.display')).getText()).to.equal('0')
     expect(tapeLines).to.deep.equal(['84', '/', '2', '=', '42'])
+
+    await eyes.checkWindow('after refresh')
   })
 })
