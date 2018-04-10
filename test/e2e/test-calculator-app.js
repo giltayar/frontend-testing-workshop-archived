@@ -10,7 +10,7 @@ require('chromedriver')
 
 const {By} = webdriver
 
-describe.only('calculator app (e2e)', function () {
+describe('calculator app (e2e)', function () {
   let server
   before((done) => {
     const app = express()
